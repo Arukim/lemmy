@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lemmy.Core.Entities;
+using System;
 using System.Numerics;
 
 namespace Lemmy.Core.Logic
@@ -25,6 +26,11 @@ namespace Lemmy.Core.Logic
             var (q1,q2) = SolveQuad(a, b, c);
 
             return Math.Max(q1, q2);
+        }
+
+        public static double VectorIntersectPlane(Vector3 objPos, Vector3 objSpeed, Plane plane)
+        {
+            return -(Vector3.Dot(plane.Normal, objPos) + plane.D) / Vector3.Dot(plane.Normal, objSpeed); 
         }
     }
 }

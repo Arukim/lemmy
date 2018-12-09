@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Lemmy.Core\Lemmy.Core.csproj" />
+    <ProjectReference Include="..\Lemmy.Core\Lemmy.Core.csproj" />
   </ItemGroup>
 
 </Project>
