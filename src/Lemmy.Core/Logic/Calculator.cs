@@ -5,7 +5,7 @@ namespace Lemmy.Core.Logic
 {
     public class Calculator
     {
-        public static (double, double) SolveQuad(double a, double b, double c)
+        public static (double rootA, double rootB) SolveQuad(double a, double b, double c)
         {
             var desc = Math.Sqrt(b * b - 4 * a * c);
 
@@ -27,7 +27,7 @@ namespace Lemmy.Core.Logic
             return Math.Max(q1, q2);
         }
 
-        public static double VectorIntersectPlane(Vector3 objPos, Vector3 objSpeed, Plane plane)
+        public static float VectorIntersectPlane(Vector3 objPos, Vector3 objSpeed, Plane plane)
         {
             return -(Vector3.Dot(plane.Normal, objPos) + plane.D) / Vector3.Dot(plane.Normal, objSpeed);
         }

@@ -46,7 +46,7 @@ namespace Tests
 
             var res = Calculator.VectorIntersectPlane(vecPos, vecSpeed, xy);
 
-            Assert.AreEqual(10.0d, res);
+            Assert.AreEqual(10.0, res);
         }
     }
 }
