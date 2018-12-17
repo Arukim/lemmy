@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Lemmy.App": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ENVIRONMENT": "Local"
+      }
+    }
+  }
+}

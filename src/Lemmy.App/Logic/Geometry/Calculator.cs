@@ -32,7 +32,10 @@ namespace Lemmy.App.Logic.Geometry
             return -(Vector3.Dot(plane.Normal, objPos) + plane.D) / Vector3.Dot(plane.Normal, objSpeed);
         }
 
-        public static Vector3? FindPath_ByGround(Vector3 catcherPos, Vector3 targetPos, Vector3 targetVelocity, Vector3 targetAcceleration)
+        public static Vector3 Find_DropPoint(
+            Vector3 targetPos,
+            Vector3 targetVelocity,
+            Vector3 targetAcceleration)
         {
             // find ball-drop-time
             double a = targetAcceleration.Y / 2, b = targetVelocity.Y, c = targetPos.Y;
@@ -40,17 +43,21 @@ namespace Lemmy.App.Logic.Geometry
             var (q1, q2) = SolveQuad(a, b, c);
 
             var tDown = Math.Max(q1, q2);
-
-            if (tDown < 0)
-                return null;
-
-            // find ball-drop-pos
-            var dropPos = targetPos + targetVelocity * (float)tDown;
-
-            // find vector
-            var targetVector = dropPos - catcherPos;
             
-            return Vector3.Normalize(targetVector);       
+            // find ball-drop-pos
+            return targetPos + targetVelocity * (float)tDown;
+        }
+
+        public static Vector3 Find_Hitpoint(Vector3 obj, double objRadius, Vector3 target)
+        {
+            var hitNormal = Vector3.Normalize(obj - target);
+
+            return obj + hitNormal * (float)objRadius;
+        }
+
+        public static Vector3 Find_Midpoint(Vector3 a, Vector3 b)
+        {
+            return a - ((a - b) / 2);
         }
     }
 }

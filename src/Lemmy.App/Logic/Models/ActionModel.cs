@@ -11,12 +11,16 @@ namespace Lemmy.App.Logic.Models
 
         internal void Apply(Com.CodeGame.CodeBall2018.DevKit.CSharpCgdk.Model.Action action)
         {
-            Console.WriteLine($"Making turn: V:{TargetVelocity} J:{JumpSpeed} N:{UseNitro}");
             action.jump_speed = JumpSpeed;
             action.use_nitro = UseNitro;
             action.target_velocity_x = TargetVelocity.X;
             action.target_velocity_y = TargetVelocity.Y;
             action.target_velocity_z = TargetVelocity.Z;
+        }
+
+        public override string ToString()
+        {
+            return $"V:{TargetVelocity} J:{JumpSpeed} N:{UseNitro}";
         }
     }
 }

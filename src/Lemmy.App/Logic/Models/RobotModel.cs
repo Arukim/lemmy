@@ -11,11 +11,13 @@ namespace Lemmy.App.Logic.Models
 
         public Robot Robot { get; private set; }
         public Vector3 Position { get; private set; }
+        public Vector3 Velocity { get; private set; }
 
         public RobotModel(Robot robot)
         {
             Robot = robot;
             Position = new Vector3((float)robot.x, (float)robot.y, (float)robot.z);
+            Velocity = new Vector3((float)robot.velocity_x, (float)robot.velocity_y, (float)robot.velocity_z);
         }
     }
 }

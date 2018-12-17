@@ -1,6 +1,6 @@
 ﻿using Com.CodeGame.CodeBall2018.DevKit.CSharpCgdk.Model;
+using Lemmy.App.Logic.Logging;
 using Lemmy.App.Logic.Models;
-using System;
 using Action = Com.CodeGame.CodeBall2018.DevKit.CSharpCgdk.Model.Action;
 
 namespace Lemmy.App.Logic
@@ -9,19 +9,26 @@ namespace Lemmy.App.Logic
     {
         public static GameDescription gameDescription;
         private static Manager manager;
+        private static ILogger logger = LogManager.GetLogger("GameStrategy");
 
         internal static void Act(Robot me, Rules rules, Game game, Action action)
         {
             var meModel = new RobotModel(me);
-            var gameModel = new GameModel(game);
+            var gameModel = new GameModel(game, rules.arena);
 
-            if (gameDescription == null)
+            if (gameDescription == null || game.current_tick < gameDescription.CurrentTurn)
                 InitGame();
 
-            if (me.id == gameDescription.FirstPlayerId)
+            if (game.current_tick > gameDescription.CurrentTurn)
+            {
+                logger.Log("Call manager");
                 manager.EvaluteTurn(rules, gameModel);
+                gameDescription.CurrentTurn++;
+            }
 
             var act = manager.MakeTurn(meModel, gameModel, action);
+
+            logger.Log($"Making turn {act}");
 
             act.Apply(action);
 
@@ -30,7 +37,7 @@ namespace Lemmy.App.Logic
                 gameDescription = new GameDescription
                 {
                     Rules = rules,
-                    FirstPlayerId = me.id
+                    CurrentTurn = -1
                 };
                 manager = new Manager();
             }
@@ -39,7 +46,7 @@ namespace Lemmy.App.Logic
         public class GameDescription
         {
             public Rules Rules;
-            public int FirstPlayerId;
+            public int CurrentTurn;
         }
     }
 }
