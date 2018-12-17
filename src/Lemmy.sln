@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lemmy.Core.Tests", "Lemmy.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lemmy.Core", "Lemmy.Core\Lemmy.Core.csproj", "{150C8D7E-52BB-4176-8D36-506E381AE012}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lemmy.Tools.SolutionComposer", "Lemmy.Tools.SolutionComposer\Lemmy.Tools.SolutionComposer.csproj", "{DD6A488F-053C-4C61-9A98-FECEB1917EB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{150C8D7E-52BB-4176-8D36-506E381AE012}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{150C8D7E-52BB-4176-8D36-506E381AE012}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{150C8D7E-52BB-4176-8D36-506E381AE012}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD6A488F-053C-4C61-9A98-FECEB1917EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD6A488F-053C-4C61-9A98-FECEB1917EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD6A488F-053C-4C61-9A98-FECEB1917EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD6A488F-053C-4C61-9A98-FECEB1917EB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

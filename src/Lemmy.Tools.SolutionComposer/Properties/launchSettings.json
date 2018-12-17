@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Lemmy.Tools.SolutionComposer": {
+      "commandName": "Project",
+      "commandLineArgs": "../../../../Lemmy.App/Logic"
+    }
+  }
+}
