@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Text;
-using Lemmy.App.Logic.Geometry;
+﻿using Lemmy.App.Logic.Geometry;
 using Lemmy.App.Logic.Logging;
 using Lemmy.App.Logic.Models;
+using System.Numerics;
 
 namespace Lemmy.App.Logic.Roles
 {
     class Freelancer : IRole
     {
-        private static ILogger logger = LogManager.GetLogger("Freelancer");
+        private static readonly ILogger logger = LogManager.GetLogger("Freelancer");
 
         public ActionModel Act(RobotModel me, GameModel game)
         {

@@ -22,11 +22,20 @@ namespace Lemmy.App.Logic
             var freeRobots = game.Robots
                           .Where(x => x.IsTeammate)
                           .ToList();
-            var forward = freeRobots
-                .OrderBy(x => Calculator.InterceptTime(game.Ball.Position, game.Ball.Velocity, x.Position, Constants.ROBOT_MAX_GROUND_SPEED))
-                .First();
 
-            AssignRole(forward, new Forward());
+            var outsiders = freeRobots.Where(x => x.Position.Z >= game.Ball.Position.Z).ToList();
+
+            foreach (var r in outsiders)
+                AssignRole(r, new Outsider());
+
+            var dropPoint = Calculator.Find_DropPoint(game.Ball.Position, game.Ball.Velocity, Constants.GravityAcc);
+
+            var forward = freeRobots
+                .OrderBy(x => Calculator.Find_GroundReachTime(dropPoint, x.Position, x.Velocity, Constants.ROBOT_MAX_GROUND_SPEED, Constants.ROBOT_ACCELERATION))
+                .FirstOrDefault();
+
+            if (forward != null)
+                AssignRole(forward, new Forward());
 
             foreach (var r in freeRobots.ToList())
                 AssignRole(r, new Freelancer());

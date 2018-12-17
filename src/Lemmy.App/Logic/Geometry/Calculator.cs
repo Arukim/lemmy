@@ -55,6 +55,32 @@ namespace Lemmy.App.Logic.Geometry
             return obj + hitNormal * (float)objRadius;
         }
 
+        public static double Find_GroundReachTime(Vector3 target, Vector3 obj, Vector3 objVelocity, double maxSpeed, double acc)
+        { 
+            // find vector
+            var targetNormal = Vector3.Normalize(target - obj);
+
+            // find current speed projection
+            var currVelocity = Vector3.Dot(objVelocity, targetNormal);
+
+            var dist = Vector3.Distance(obj, target);
+
+            // Path to target consist of two parts
+            // First while accelerating, second when max speed is reached
+
+            // How long we need to accelerate
+            var accT = (maxSpeed - currVelocity) / acc;
+            // distance while accelerating
+            var accDist = acc * accT * accT + currVelocity * accT;
+            if (dist > accDist)
+            {
+                // if not enough, add distance with max speed
+                accT = (dist - accDist) / maxSpeed;
+            }
+
+            return accT;
+        }
+
         public static Vector3 Find_Midpoint(Vector3 a, Vector3 b)
         {
             return a - ((a - b) / 2);
