@@ -3,7 +3,7 @@
     "Lemmy.App": {
       "commandName": "Project",
       "environmentVariables": {
-        "ENVIRONMENT": "Local"
+        "ENVIRONMENT1": "Local"
       }
     }
   }
