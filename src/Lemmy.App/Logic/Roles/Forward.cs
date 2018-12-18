@@ -29,11 +29,12 @@ namespace Lemmy.App.Logic.Roles
             var targetNormal = Vector3.Normalize(hitPoint - me.Position);
 
             // if we would reach ball on next turn - make a jump
-            if (accT < 0)
+            if (accT < 1)
             {
                 targetNormal.Y = (float)(1 - accT);
                 targetNormal = Vector3.Normalize(targetNormal);
                 isJumping = true;
+                logger.Log($"striking!");
             }
 
             targetNormal *= (float)Constants.ROBOT_MAX_GROUND_SPEED;
